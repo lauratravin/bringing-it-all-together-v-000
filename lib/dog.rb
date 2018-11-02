@@ -66,10 +66,12 @@ class Dog
 
   def self.find_by_name(name)
     arr = DB[:conn].execute("SELECT * FROM dogs WHERE name = ?",name).flatten
-    self.new_from_db(arr)
+    self.new_from_db(arr) #envio el dato al metodo para que me cree un instancia
   end
 
   def update
+    DB[:conn].execute("UPDATE dogs SET name = ?, breed = ? WHERE id = ?", self.name, self.breed, self.id)
+
   end
 
 end
