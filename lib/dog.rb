@@ -1,3 +1,4 @@
+requiere 'pry'
 class Dog
   attr_accessor :name, :breed, :id
 
@@ -46,4 +47,16 @@ class Dog
     Dog.new(id: arr[0],name: arr[1], breed: arr[2])
   end
 
+  def self.find_or_create_by(name:,breed:)
+     dog = DB[:conn].execute("SELECT * FROM songs WHERE name = ? AND album = ?", name, album)
+     binding.pry
+     if !dog.empty?
+          dog_data = dog[0]
+          dog = Dog.new(id: dog_data[0], name:  dog_data[1], breed:  dog_data[2])
+          
+     else
+         dog = Dog.create(name: name,breed: breed)     
+     end      
+      dog
+  end  
 end
