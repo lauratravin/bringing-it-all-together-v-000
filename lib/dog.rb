@@ -48,7 +48,7 @@ class Dog
   end
 
   def self.find_or_create_by(name:,breed:)
-     dog = DB[:conn].execute("SELECT * FROM songs WHERE name = ? AND breed = ?", name, breed)
+     dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
      binding.pry
      if !dog.empty?
           dog_data = dog[0]
